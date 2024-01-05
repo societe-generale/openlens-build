@@ -42,7 +42,7 @@ jobs:
 
       - name: Build Lens
         run: |
-          tree
+          ls -lRth
           
           npm run all:install
           # Avoid npm install from electron-builder
