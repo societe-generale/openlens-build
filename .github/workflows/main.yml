@@ -1,4 +1,4 @@
-name: Build Lens
+name: "🧱 Build Lens"
 
 on:
   workflow_dispatch:
