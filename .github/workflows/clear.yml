@@ -2,18 +2,11 @@ name: Clear Latest
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ main ]
-    paths-ignore:
-      - '**/README.md'
           
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 60
+    runs-on: ubuntu
+    timeout-minutes: 5
     steps:
       - name: Clean Latest
         uses: mknejp/delete-release-assets@v1
