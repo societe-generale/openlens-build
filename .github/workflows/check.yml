@@ -2,7 +2,7 @@ name: Check latest Lens version
 
 on:
   schedule:
-    - cron: '15 */6 * * *'
+    - cron: '0 1 * * 0'
   workflow_dispatch:
   
 permissions:
@@ -10,7 +10,7 @@ permissions:
   
 jobs:
   version_check:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu
     steps:
       - name: Checkout
         uses: actions/checkout@v3
