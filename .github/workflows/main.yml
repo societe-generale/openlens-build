@@ -12,7 +12,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ ubuntu-20.04, macos-latest, windows-latest ]
+        os: [ windows-latest ]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 360
     env:
@@ -23,7 +23,6 @@ jobs:
 
       - name: Export version to variable
         run: echo "LENS_VERSION=$(cat version)" >> $GITHUB_ENV
-        shell: bash
 
       - uses: actions/setup-node@v3
         with:
@@ -88,7 +87,6 @@ jobs:
           else
             for filename in OpenLens*; do certutil -hashfile "${filename}" SHA256 | tee "${filename}.sha256" ; done
           fi
-
         shell: bash
         working-directory: lens/open-lens/dist
 
