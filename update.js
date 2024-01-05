@@ -3,7 +3,7 @@ const fs = require('fs');
 const packageJsonOpenLens = require('./lens/open-lens/package.json');
 
 packageJsonOpenLens.build.publish = [{
-    url: "https://github.com/MuhammedKalkan/OpenLens/releases/download/Latest",
+    url: "https://github.com/societe-generale/OpenLens/releases/download/Latest",
     provider: "generic"
 }];
 
@@ -17,8 +17,8 @@ delete packageJsonOpenLens.scripts.postinstall;
 packageJsonOpenLens.copyright = [
     packageJsonOpenLens.copyright,
     '',
-    'Binary application builds @ MuhammedKalkan/OpenLens',
-    'by Muhammed Kalkan, Jan-Otto Kröpke, Ebby Peter, Xaver Lohmüller'
+    'Binary application builds @ societe-generale/openlens-build',
+    'by Societe Generale'
 ].join("\r\n")
 
 console.log(`Set build version: ${packageJsonOpenLens.version}`)
