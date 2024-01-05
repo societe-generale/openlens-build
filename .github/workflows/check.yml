@@ -1,4 +1,4 @@
-name: Check latest Lens version
+name: "⚙ Check latest Lens version"
 
 on:
   schedule:
