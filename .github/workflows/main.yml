@@ -3,10 +3,8 @@ name: Build Lens
 on:
   workflow_dispatch:
   push:
-    branches: [main]
-    paths-ignore:
-      - "**/README.md"
-  pull_request:
+    branches: [ 'main' ]
+    paths: [ 'version' ]
 
 jobs:
   build:
@@ -44,6 +42,8 @@ jobs:
 
       - name: Build Lens
         run: |
+          tree
+          
           npm run all:install
           # Avoid npm install from electron-builder
           # ref: https://github.com/electron-userland/electron-builder/blob/80a3ae857b9305aff1774e1b2b932601af50231b/packages/app-builder-lib/src/util/yarn.ts#L11-L16
@@ -55,7 +55,7 @@ jobs:
           fi
           
           if [ "$RUNNER_OS" == "Windows" ]; then
-            npx nx run open-lens:build:app --win nsis msi portable
+            npx nx run open-lens:build:app --win portable
           elif [ "$RUNNER_OS" == "Linux" ]; then
             sudo apt update
             sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu -y
