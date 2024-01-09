@@ -8,10 +8,7 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ windows-latest ]
-    runs-on: ${{ matrix.os }}
+    runs-on:  windows-latest
     timeout-minutes: 360
     
     env:
@@ -54,19 +51,8 @@ jobs:
             unset CSC_KEY_PASSWORD
           fi
           
-          if [ "$RUNNER_OS" == "Windows" ]; then
-            npx nx run open-lens:build:app --win portable
-          elif [ "$RUNNER_OS" == "Linux" ]; then
-            sudo apt update
-            sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu -y
-          
-            npx nx run open-lens:build:app --x64 --arm64
-            find . -name '*pty.node' -print0 | xargs -0 file
-          else
-            npx nx run open-lens:build:app --x64 --arm64
-            find . -name '*pty.node' -print0 | xargs -0 file
-          fi
-          
+          npx nx run open-lens:build:app --win portable
+
           rm -f open-lens/dist/*blockmap{,*}
         shell: bash
         working-directory: lens
@@ -111,11 +97,3 @@ jobs:
           body_path: ${{ github.workspace }}-CHANGELOG.txt
           files: lens/open-lens/dist/OpenLens*${{ env.LENS_VERSION }}-${{ env.BUILD_ID }}*.*
 
-      - name: Latest
-        uses: softprops/action-gh-release@v0.1.15
-        if: github.ref == 'refs/heads/main'
-        with:
-          tag_name: Latest
-          files: |
-            lens/open-lens/dist/OpenLens*${{ env.LENS_VERSION }}-${{ env.BUILD_ID }}*.*
-            #lens/open-lens/dist/lates*.yml
