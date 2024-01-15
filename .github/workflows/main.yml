@@ -49,7 +49,7 @@ jobs:
           rm -f open-lens/dist/*blockmap{,*}
         shell: bash
         working-directory: lens
-        env:
+        # env:
           # APPBUNDLEID: "com.socgen.lens-app"
           #   https://www.electron.build/code-signing.html
           # CSC_LINK: ${{ secrets.CSC_LINK_WIN }}
