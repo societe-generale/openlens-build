@@ -39,17 +39,10 @@ jobs:
 
       - name: Build Lens
         run: |
-          ls -lRth
-          
           npm run all:install
           # Avoid npm install from electron-builder
           # ref: https://github.com/electron-userland/electron-builder/blob/80a3ae857b9305aff1774e1b2b932601af50231b/packages/app-builder-lib/src/util/yarn.ts#L11-L16
-          mkdir -p open-lens/node_modules
-          
-          if [ "${CSC_LINK}" = "" ] || [ "${CSC_KEY_PASSWORD}" = "" ]; then
-            unset CSC_LINK
-            unset CSC_KEY_PASSWORD
-          fi
+          mkdir open-lens/node_modules
           
           npx nx run open-lens:build:app --win portable
 
@@ -57,17 +50,11 @@ jobs:
         shell: bash
         working-directory: lens
         env:
-          APPBUNDLEID: "io.kontena.lens-app"
-          APPLEID: ${{ secrets.APPLEID }}
-          APPLEIDPASS: ${{ secrets.APPLEIDPASS }}
-          CSC_LINK: ${{ runner.os == 'macos' && secrets.CSC_LINK || secrets.CSC_LINK_WIN }}
-          CSC_KEY_PASSWORD: ${{ runner.os == 'macos' && secrets.CSC_KEY_PASSWORD || secrets.CSC_KEY_PASSWORD_WIN }}
-          CSC_LINK_WIN: ${{ secrets.CSC_LINK_WIN }}
-          CSC_KEY_PASSWORD_WIN: ${{ secrets.CSC_KEY_PASSWORD_WIN }}
-          WIN_CSC_LINK: ${{ secrets.CSC_LINK_WIN }}
-          WIN_CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD_WIN }}
-          CSC_FOR_PULL_REQUEST: true
-          DOWNLOAD_ALL_ARCHITECTURES: ${{ runner.os != 'Windows' }}
+          # APPBUNDLEID: "com.socgen.lens-app"
+          #   https://www.electron.build/code-signing.html
+          # CSC_LINK: ${{ secrets.CSC_LINK_WIN }}
+          # CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD_WIN }}
+          # DOWNLOAD_ALL_ARCHITECTURES: false
 
       - name: Calculate SHA256 checksum
         run: |-
