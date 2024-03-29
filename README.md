@@ -32,5 +32,5 @@ The Kubernetes management tool [Lens IDE](https://k8slens.dev/) is a distributio
 
 ## Installation
 
-Go to [Releases](https://github.com/societe-generale/OpenLens/releases) and download the relevant binary for your system.
+Go to [Releases](https://github.com/societe-generale/openlens-build/releases) and download the relevant binary for your system.
 
