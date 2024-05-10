@@ -1,7 +1,7 @@
 > [!CAUTION]
 > Lens Closed its source code. So please do not expect any more updates.
->
-> # OpenLens Build Repo
+
+# OpenLens Build Repo
 
 [![Build Lens](https://github.com/societe-generale/openlens-build/actions/workflows/main.yml/badge.svg)](https://github.com/societe-generale/openlens-build/actions/workflows/main.yml)
 
